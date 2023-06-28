@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Client extends Model
 {
     use HasFactory;
+
+    public function penjualan()
+    {
+        return $this->hasMany(Transaction::class,'client_id');
+    }
 }

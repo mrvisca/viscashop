@@ -15,10 +15,14 @@ return new class extends Migration
             $table->id();
             $table->integer('category_id');
             $table->string('name');
+            $table->integer('modal');
+            $table->integer('price');
             $table->string('desc');
             $table->string('gambar')->nullable();
             $table->integer('stock')->default(0);
             $table->enum('satuan',['pcs','lusin','karton'])->default('pcs');
+            $table->boolean('is_active')->default(true);
+            $table->boolean('is_jual')->default(true);
             $table->timestamps();
         });
     }
