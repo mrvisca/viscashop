@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProductController;
@@ -68,9 +69,9 @@ Route::middleware(['auth:sanctum'])->group(function () {
     });
 
     Route::prefix('purchase')->group(function () {
-        Route::get("list-produk", [TransactionController::class, 'list_produk']);
-        Route::post("buat-transaksi", [TransactionController::class, 'transaction']);
-        Route::get("list-penjualan", [TransactionController::class, 'transaksi_penjualan']);
+        Route::get("list-produk", [PurchaseController::class, 'produklist']);
+        Route::post("buat-transaksi", [PurchaseController::class, 'transaction']);
+        Route::get("list-penjualan", [PurchaseController::class, 'purchase_list']);
     });
 });
 
