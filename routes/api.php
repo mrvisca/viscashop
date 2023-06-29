@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\CategoryController;
@@ -53,11 +56,21 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::delete("hapus-data/{id}", [SupplierController::class, 'delete']);
     });
 
+    Route::prefix('profile')->group(function () {
+        Route::get("check", [ProfileController::class, 'profile']);
+        Route::post("update", [ProfileController::class, 'update']);
+    });
+
     Route::prefix('transaksi')->group(function () {
-        Route::get("list-produk", [TransactionController::class, 'produk_pos']);
-        Route::post("buat-transaksi", [TransactionController::class, 'transaksi']);
-        Route::get("list-penjualan", [TransactionController::class, 'data_penjualan']);
-        Route::get("list-openbill", [TransactionController::class, 'list_open_bill']);
+        Route::get("list-produk", [TransactionController::class, 'list_produk']);
+        Route::post("buat-transaksi", [TransactionController::class, 'transaction']);
+        Route::get("list-penjualan", [TransactionController::class, 'transaksi_penjualan']);
+    });
+
+    Route::prefix('purchase')->group(function () {
+        Route::get("list-produk", [TransactionController::class, 'list_produk']);
+        Route::post("buat-transaksi", [TransactionController::class, 'transaction']);
+        Route::get("list-penjualan", [TransactionController::class, 'transaksi_penjualan']);
     });
 });
 

@@ -13,4 +13,9 @@ class Product extends Model
     {
         return $this->belongsTo(Category::class,'category_id');
     }
+
+    public function history()
+    {
+        return $this->hasMany(StockHistories::class,'product_id');
+    }
 }

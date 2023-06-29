@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\StockHistories;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
@@ -81,6 +83,15 @@ class ProductController extends Controller
         $produk->is_active = true;
         $produk->is_jual = $request->is_jual;
         $produk->save();
+
+        $history = new StockHistories();
+        $history->user_id = Auth::user()->id;
+        $history->product_id = $produk->id;
+        $history->qty = $produk->stock;
+        $history->live_stock = $produk->stock;
+        $history->status = 'penambahan';
+        $history->keterangan = 'Penambahan produk stock awal sebesar '.$produk->stock.' oleh '.Auth::user()->firstname.' '.Auth::user()->lastname;
+        $history->save();
 
         return response()->json([
             'success' => true,
@@ -163,6 +174,13 @@ class ProductController extends Controller
         $cari = Product::where('id',$id)->first();
         if($cari)
         {
+            // Hapus History Stock Produk
+            $childModels = StockHistories::where('product_id', $id)->get();
+
+            $childModels->each(function ($childModel) {
+                $childModel->delete();
+            });
+
             $hapus = Product::where('id',$id)->delete();
 
             if($hapus)
