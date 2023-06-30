@@ -44,7 +44,6 @@ class ProductController extends Controller
 
         return response()->json([
             'data' => $list,
-            'totalrecord' => $produk->total(),
         ],200);
     }
 
@@ -201,5 +200,10 @@ class ProductController extends Controller
                 'message' => 'Data produk tidak ditemukan',
             ],404);
         }
+    }
+
+    public function view_product()
+    {
+        return view('admin.listproduk');
     }
 }

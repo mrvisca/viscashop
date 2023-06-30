@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AutentikasiController;
 use Illuminate\Support\Facades\Route;
@@ -23,7 +24,7 @@ Route::get('/', function () {
 Route::get('/oth/login',[AutentikasiController::class, 'halaman_login'])->name('login');
 Route::get('/oth/register',[AutentikasiController::class, 'halaman_registrasi'])->name('registrasi');
 
-Route::middleware('auth:sanctum')->group(function () {
-    Route::get('/dashboard/index',[DashboardController::class, 'index'])->name('admin.dashboard');
-});
+Route::get('/dashboard/index',[DashboardController::class, 'index'])->name('admin.dashboard');
+
+Route::get('/product/list',[ProductController::class, 'view_product'])->name('admin.product');
 
