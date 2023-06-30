@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\AutentikasiController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +16,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('login');
 });
+
+// Route Autentikasi
+Route::get('/oth/login',[AutentikasiController::class, 'halaman_login'])->name('login');
+Route::get('/oth/register',[AutentikasiController::class, 'halaman_registrasi'])->name('registrasi');
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/dashboard/index',[DashboardController::class, 'index'])->name('admin.dashboard');
+});
+

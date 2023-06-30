@@ -50,6 +50,8 @@ class AutentikasiController extends Controller
         $token = $tokenResult->plainTextToken;
 
         return response()->json([
+            'success' => true,
+            'message' => 'Login Berhasil, Selamat datang admin '.$user->firstname.' '.$user->lastname,
             'id' => $user->id,
             'role_id' => $user->role_id,
             'role_name' => $user->role->name ?? '',
@@ -60,7 +62,7 @@ class AutentikasiController extends Controller
             'name' => $user->fullname,
             'email' => $user->email,
             'token' => $token,
-        ],200);
+        ],201);
     }
 
     public function register(Request $request)
@@ -93,5 +95,15 @@ class AutentikasiController extends Controller
             'success' => true,
             'message' => 'Berhasil mendaftarkan akun, untuk memulai aplikasi silahkan login',
         ],201);
+    }
+
+    public function halaman_login()
+    {
+        return view('login');
+    }
+
+    public function halaman_registrasi()
+    {
+        return view('register');
     }
 }
