@@ -104,4 +104,9 @@ class ClientController extends Controller
             ],404);
         }
     }
+
+    public function customer_list()
+    {
+        return view('admin.listcustomer');
+    }
 }

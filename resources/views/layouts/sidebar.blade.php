@@ -39,13 +39,13 @@
             </ul>
         </li>
         <li>
-            <a href="side-menu-inbox.html" class="side-menu">
+            <a href="{{ route('admin.supplier') }}" class="side-menu">
                 <div class="side-menu__icon"> <i data-feather="user"></i> </div>
                 <div class="side-menu__title"> Supplier </div>
             </a>
         </li>
         <li>
-            <a href="side-menu-file-manager.html" class="side-menu">
+            <a href="{{ route('admin.customer') }}" class="side-menu">
                 <div class="side-menu__icon"> <i data-feather="users"></i> </div>
                 <div class="side-menu__title"> Pelanggan </div>
             </a>

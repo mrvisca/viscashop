@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\ClientController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AutentikasiController;
+use App\Http\Controllers\SupplierController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,4 +34,6 @@ Route::get('/product/add',[ProductController::class, 'form_tambah'])->name('admi
 Route::get('/product/edit',[ProductController::class, 'edit_form'])->name('admin.product.edit');
 
 Route::get('/category/list',[CategoryController::class, 'list_kategori'])->name('admin.kategori');
+Route::get('/customer/list',[ClientController::class, 'customer_list'])->name('admin.customer');
+Route::get('/supplier/list',[SupplierController::class, 'supplier_list'])->name('admin.supplier');
 

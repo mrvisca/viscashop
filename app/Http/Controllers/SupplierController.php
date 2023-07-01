@@ -104,4 +104,9 @@ class SupplierController extends Controller
             ],404);
         }
     }
+
+    public function supplier_list()
+    {
+        return view('admin.listsupplier');
+    }
 }

@@ -44,14 +44,14 @@ Route::middleware(['auth:sanctum'])->group(function () {
     });
 
     Route::prefix('pelanggan')->group(function () {
-        Route::get("list", [ClientController::class, 'list']);
+        Route::get("list", [ClientController::class, 'index']);
         Route::post("tambah-baru", [ClientController::class, 'tambah']);
         Route::put("update-data/{id}", [ClientController::class, 'update']);
         Route::delete("hapus-data/{id}", [ClientController::class, 'delete']);
     });
 
     Route::prefix('supplier')->group(function () {
-        Route::get("list", [SupplierController::class, 'list']);
+        Route::get("list", [SupplierController::class, 'index']);
         Route::post("tambah-baru", [SupplierController::class, 'tambah']);
         Route::put("update-data/{id}", [SupplierController::class, 'update']);
         Route::delete("hapus-data/{id}", [SupplierController::class, 'delete']);

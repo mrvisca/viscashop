@@ -6,7 +6,7 @@
     <!-- BEGIN: Top Bar -->
     <div class="top-bar">
         <!-- BEGIN: Breadcrumb -->
-        <div class="-intro-x breadcrumb mr-auto hidden sm:flex"> <a href="" class="">Kategori</a> <i data-feather="chevron-right" class="breadcrumb__icon"></i> <a href="" class="breadcrumb--active">List Kategori</a> </div>
+        <div class="-intro-x breadcrumb mr-auto hidden sm:flex"> <a href="" class="">Pelanggan</a> <i data-feather="chevron-right" class="breadcrumb__icon"></i> <a href="" class="breadcrumb--active">List Pelanggan</a> </div>
         <!-- END: Breadcrumb -->
         <!-- BEGIN: Notifications -->
         <div class="intro-x dropdown relative mr-auto sm:mr-6">
@@ -111,10 +111,10 @@
     <!-- END: Top Bar -->
     <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
         <h2 class="text-lg font-medium mr-auto">
-            List Kategori Produk
+            List Pelanggan
         </h2>
         <div class="w-full sm:w-auto flex mt-4 sm:mt-0">
-            <button class="button text-white bg-theme-1 shadow-md mr-2 tambah-kategori"> Tambah Kategori </button>
+            <button class="button text-white bg-theme-1 shadow-md mr-2 tambah-pelanggan"> Tambah Pelanggan </button>
         </div>
     </div>
     <!-- BEGIN: Datatable -->
@@ -124,7 +124,8 @@
                 <tr>
                     <th class="border-b-2 text-center whitespace-no-wrap">ID</th>
                     <th class="border-b-2 text-center whitespace-no-wrap">NAMA</th>
-                    <th class="border-b-2 text-center whitespace-no-wrap">DESKRIPSI</th>
+                    <th class="border-b-2 text-center whitespace-no-wrap">EMAIL</th>
+                    <th class="border-b-2 text-center whitespace-no-wrap">TELPON</th>
                     <th class="border-b-2 text-center whitespace-no-wrap">ACTIONS</th>
                 </tr>
             </thead>
@@ -138,7 +139,7 @@
         <div class="modal__content">
             <div class="flex items-center px-5 py-5 sm:py-3 border-b border-gray-200">
                 <h2 class="font-medium text-base mr-auto">
-                    Form Tambah Kategori
+                    Form Tambah Pelanggan
                 </h2>
                 <div class="dropdown relative sm:hidden">
                     <a class="dropdown-toggle w-5 h-5 block" href="javascript:;"> <i data-feather="more-horizontal" class="w-5 h-5 text-gray-700"></i> </a>
@@ -151,12 +152,16 @@
             </div>
             <div class="p-5 grid grid-cols-12 gap-4 row-gap-3">
                 <div class="col-span-12 sm:col-span-12">
-                    <label>Nama Kategori</label>
-                    <input type="text" class="input w-full border mt-2 flex-1 ini-nama" placeholder="Makanan Ringan">
+                    <label>Nama Pelanggan</label>
+                    <input type="text" class="input w-full border mt-2 flex-1 ini-nama" placeholder="Jhon Doe">
                 </div>
                 <div class="col-span-12 sm:col-span-12">
-                    <label>Deskripsi</label>
-                    <textarea class="input w-full border mt-2 ini-deskripsi" name="comment" placeholder="Ini Makanan Ringan" minlength="10" required></textarea>
+                    <label>Email Pelanggan</label>
+                    <input type="text" class="input w-full border mt-2 flex-1 ini-email" placeholder="jhondoe@mail.com">
+                </div>
+                <div class="col-span-12 sm:col-span-12">
+                    <label>No Telpon Pelanggan</label>
+                    <input type="number" class="input w-full border mt-2 flex-1 ini-telp" placeholder="628xxxxxxxxxx">
                 </div>
             </div>
             <div class="px-5 py-3 text-right border-t border-gray-200">
@@ -171,7 +176,7 @@
         <div class="modal__content">
             <div class="flex items-center px-5 py-5 sm:py-3 border-b border-gray-200">
                 <h2 class="font-medium text-base mr-auto">
-                    Form Edit Kategori
+                    Form Edit Pelanggan
                 </h2>
                 <div class="dropdown relative sm:hidden">
                     <a class="dropdown-toggle w-5 h-5 block" href="javascript:;"> <i data-feather="more-horizontal" class="w-5 h-5 text-gray-700"></i> </a>
@@ -185,12 +190,16 @@
             <div class="p-5 grid grid-cols-12 gap-4 row-gap-3">
                 <input type="text" class="input w-full border mt-2 flex-1 ini-id" placeholder="Makanan Ringan" hidden>
                 <div class="col-span-12 sm:col-span-12">
-                    <label>Nama Kategori</label>
-                    <input type="text" class="input w-full border mt-2 flex-1 nama-edit" placeholder="Makanan Ringan">
+                    <label>Nama Pelanggan</label>
+                    <input type="text" class="input w-full border mt-2 flex-1 nama-edit" placeholder="Jhon Doe">
                 </div>
                 <div class="col-span-12 sm:col-span-12">
-                    <label>Deskripsi</label>
-                    <textarea class="input w-full border mt-2 deskripsi-edit" name="comment" placeholder="Ini Makanan Ringan" minlength="10" required></textarea>
+                    <label>Alamat Email</label>
+                    <input type="text" class="input w-full border mt-2 flex-1 email-edit" placeholder="jhondoe@mail.com">
+                </div>
+                <div class="col-span-12 sm:col-span-12">
+                    <label>No Telpon</label>
+                    <input type="text" class="input w-full border mt-2 flex-1 telp-edit" placeholder="628xxxxxxxxxx">
                 </div>
             </div>
             <div class="px-5 py-3 text-right border-t border-gray-200">
@@ -237,12 +246,12 @@
         }
 
         // Tombol registrasi
-        $(".tambah-kategori").click(function() {
+        $(".tambah-pelanggan").click(function() {
             // Show the modal
             $("#header-footer-modal-preview").modal("show");
         });
 
-        var url = 'http://127.0.0.1:8000/api/kategori/list';
+        var url = 'http://127.0.0.1:8000/api/pelanggan/list';
         fetch(url, {
             method: 'GET',
             headers: {
@@ -270,7 +279,8 @@
                     var rowData = {
                         id: item[i].id,
                         name: item[i].name,
-                        desc: item[i].desc,
+                        email: item[i].email,
+                        telp: item[i].telp,
                     };
 
                     // Push the object to the data array
@@ -290,12 +300,13 @@
                 columns: [
                     { data: 'id', className: 'text-center' },
                     { data: 'name', className: 'text-center' },
-                    { data: 'desc', className: 'text-center' },
+                    { data: 'email', className: 'text-center' },
+                    { data: 'telp', className: 'text-center' },
                     {
                         data: null,
                         render: function (data, type, row) {
                             // Create action buttons
-                            var editBtn = '<button class="btn btn-primary btn-edit" data-id="' + data.id + '" data-name="' + data.name + '" data-desc="' + data.desc + '">Edit</button> ||';
+                            var editBtn = '<button class="btn btn-primary btn-edit" data-id="' + data.id + '" data-name="' + data.name + '" data-email="' + data.email + '" data-telp="' + data.telp + '">Edit</button> ||';
                             var deleteBtn = '<button class="btn btn-danger btn-delete" data-id="' + data.id + '">Delete</button>';
 
                             // Combine the buttons
@@ -313,18 +324,20 @@
 
                 // Get form data
                 var nama = $(".ini-nama").val();
-                var deskripsi = $(".ini-deskripsi").val();
+                var email = $(".ini-email").val();
+                var telp = $(".ini-telp").val();
 
                 // Send data using Ajax
                 $.ajax({
-                        url: "http://127.0.0.1:8000/api/kategori/tambah-baru",
+                        url: "http://127.0.0.1:8000/api/pelanggan/tambah-baru",
                         type: "POST",
                         beforeSend: function(xhr) {
                         xhr.setRequestHeader('Authorization', 'Bearer ' + token);
                     },
                     data: {
                         name: nama,
-                        desc: deskripsi
+                        email: email,
+                        telp: telp,
                     },
                     success: function(response) {
                         // Success response, show success SweetAlert notification
@@ -351,24 +364,26 @@
                 var id = $('.ini-id').val();
                 // Ambil nilai input
                 var nama = $('.nama-edit').val();
-                var deskripsi = $('.deskripsi-edit').val();
+                var email = $('.email-edit').val();
+                var telp = $('.telp-edit').val();
 
                 // Kirim permintaan pembaruan produk ke API
                 $.ajax({
-                    url: "http://127.0.0.1:8000/api/kategori/update-data/" + id,
+                    url: "http://127.0.0.1:8000/api/pelanggan/update-data/" + id,
                     type: "PUT",
                     beforeSend: function(xhr) {
                         xhr.setRequestHeader('Authorization', 'Bearer ' + token);
                     },
                     data: {
                         name: nama,
-                        desc: deskripsi,
+                        email: email,
+                        telp: telp,
                      },
                     success: function(response) {
                         // Tampilkan SweetAlert berhasil
                         Swal.fire({
                             title: 'Berhasil',
-                            text: 'Data kategori berhasil Update.',
+                            text: 'Data pelanggan berhasil di Update.',
                             icon: 'success'
                         }).then(function() {
                             // Lakukan tindakan lain setelah penghapusan berhasil
@@ -378,7 +393,7 @@
                     },
                     error: function(xhr, status, error) {
                         // Tampilkan pesan error dengan SweetAlert
-                        swal("Error!", "Terjadi kesalahan saat memperbarui kategori produk.", "error");
+                        swal("Error!", "Terjadi kesalahan saat memperbarui pelanggan.", "error");
                     }
                 });
             });
@@ -388,12 +403,14 @@
                 $("#header-footer-modal-preview-edit").modal("show");
                 var id = $(this).attr("data-id");
                 var name = $(this).attr("data-name");
-                var desc = $(this).attr("data-desc");
+                var email = $(this).attr("data-email");
+                var telp = $(this).attr("data-telp");
                 // Handle edit action
                 console.log('Edit clicked for ID:', id);
                 $('.ini-id').val(id);
                 $('.nama-edit').val(name);
-                $('.deskripsi-edit').val(desc);
+                $('.email-edit').val(email);
+                $('.telp-edit').val(telp);
             });
 
             $('#data-table').on('click', '.btn-delete', function() {
@@ -404,7 +421,7 @@
                 // Tampilkan SweetAlert konfirmasi hapus
                 Swal.fire({
                     title: 'Konfirmasi',
-                    text: 'Apakah Anda yakin ingin menghapus data kategori produk ini?',
+                    text: 'Apakah Anda yakin ingin menghapus data pelanggan ini?',
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
@@ -415,7 +432,7 @@
                 if (result.isConfirmed) {
                     // Jika pengguna mengonfirmasi hapus, lakukan permintaan Ajax
                     $.ajax({
-                    url: 'http://127.0.0.1:8000/api/kategori/hapus-data/' + id,
+                    url: 'http://127.0.0.1:8000/api/pelanggan/hapus-data/' + id,
                     type: 'DELETE',
                     headers: {
                         'Authorization': 'Bearer ' + token
@@ -424,7 +441,7 @@
                         // Tampilkan SweetAlert berhasil
                         Swal.fire({
                             title: 'Berhasil',
-                            text: 'Data kategori berhasil dihapus.',
+                            text: 'Data Pelanggan berhasil dihapus.',
                             icon: 'success'
                         }).then(function() {
                         // Lakukan tindakan lain setelah penghapusan berhasil
