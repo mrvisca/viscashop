@@ -34,6 +34,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::get("detail/{id}", [ProductController::class, 'detail']);
         Route::put("update-data/{id}", [ProductController::class, 'update']);
         Route::delete("hapus-data/{id}", [ProductController::class, 'delete']);
+        Route::get("history-stock", [ProductController::class, 'list_history']);
     });
 
     Route::prefix('kategori')->group(function () {

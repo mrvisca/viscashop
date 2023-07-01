@@ -36,4 +36,5 @@ Route::get('/product/edit',[ProductController::class, 'edit_form'])->name('admin
 Route::get('/category/list',[CategoryController::class, 'list_kategori'])->name('admin.kategori');
 Route::get('/customer/list',[ClientController::class, 'customer_list'])->name('admin.customer');
 Route::get('/supplier/list',[SupplierController::class, 'supplier_list'])->name('admin.supplier');
+Route::get('/stock/history',[ProductController::class, 'history_stock'])->name('admin.history');
 

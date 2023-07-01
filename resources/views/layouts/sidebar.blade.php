@@ -31,7 +31,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="top-menu-dashboard.html" class="side-menu">
+                    <a href="{{ route('admin.history') }}" class="side-menu">
                         <div class="side-menu__icon"> <i data-feather="clipboard"></i> </div>
                         <div class="side-menu__title"> Riwayat Stock </div>
                     </a>

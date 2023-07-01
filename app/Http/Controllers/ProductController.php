@@ -203,6 +203,27 @@ class ProductController extends Controller
         }
     }
 
+    public function list_history()
+    {
+        $stok = StockHistories::get();
+        $data = array();
+        foreach($stok as $s)
+        {
+            $item['user_name'] = $s->user->firstname.' '.$s->user->lastname;
+            $item['product_name'] = $s->product->name;
+            $item['qty'] = $s->qty;
+            $item['live_stock'] = $s->live_stock;
+            $item['satuan'] = $s->product->satuan;
+            $item['status'] = $s->status;
+            $item['keterangan'] = $s->keterangan;
+            $data[] = $item;
+        }
+
+        return response()->json([
+            'data' => $data,
+        ],200);
+    }
+
     public function view_product()
     {
         return view('admin.listproduk');
@@ -216,5 +237,10 @@ class ProductController extends Controller
     public function edit_form()
     {
         return view('admin.editproduk');
+    }
+
+    public function history_stock()
+    {
+        return view('admin.listhistory');
     }
 }
