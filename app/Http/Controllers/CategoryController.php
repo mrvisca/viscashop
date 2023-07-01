@@ -101,4 +101,9 @@ class CategoryController extends Controller
             ],404);
         }
     }
+
+    public function list_kategori()
+    {
+        return view('admin.listkategori');
+    }
 }

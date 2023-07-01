@@ -135,6 +135,7 @@ class ProductController extends Controller
         if($cari)
         {
             $cari->name = $request->name == '' ? $cari->name : $request->name;
+            $cari->category_id = $request->category_id == '' ? $cari->category_id : $request->category_id;
             $cari->modal = $request->modal == 0 ? $cari->modal : $request->modal;
             $cari->price = $request->price == 0 ? $cari->price : $request->price;
             if ($request->hasFile('gambar')) {
@@ -205,5 +206,15 @@ class ProductController extends Controller
     public function view_product()
     {
         return view('admin.listproduk');
+    }
+
+    public function form_tambah()
+    {
+        return view('admin.addproduk');
+    }
+
+    public function edit_form()
+    {
+        return view('admin.editproduk');
     }
 }

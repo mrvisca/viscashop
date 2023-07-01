@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AutentikasiController;
@@ -27,4 +28,8 @@ Route::get('/oth/register',[AutentikasiController::class, 'halaman_registrasi'])
 Route::get('/dashboard/index',[DashboardController::class, 'index'])->name('admin.dashboard');
 
 Route::get('/product/list',[ProductController::class, 'view_product'])->name('admin.product');
+Route::get('/product/add',[ProductController::class, 'form_tambah'])->name('admin.product.add');
+Route::get('/product/edit',[ProductController::class, 'edit_form'])->name('admin.product.edit');
+
+Route::get('/category/list',[CategoryController::class, 'list_kategori'])->name('admin.kategori');
 
