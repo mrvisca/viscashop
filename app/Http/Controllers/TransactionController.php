@@ -189,6 +189,11 @@ class TransactionController extends Controller
         ],200);
     }
 
+    public function transaksi_page()
+    {
+        return view('admin.transactioncart');
+    }
+
     public function getNumberOrder()
     {
         $last = DB::table('transactions')->latest('id')->first();

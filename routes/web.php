@@ -6,6 +6,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AutentikasiController;
 use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\TransactionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,4 +38,7 @@ Route::get('/category/list',[CategoryController::class, 'list_kategori'])->name(
 Route::get('/customer/list',[ClientController::class, 'customer_list'])->name('admin.customer');
 Route::get('/supplier/list',[SupplierController::class, 'supplier_list'])->name('admin.supplier');
 Route::get('/stock/history',[ProductController::class, 'history_stock'])->name('admin.history');
+
+
+Route::get('/transaction/page',[TransactionController::class, 'transaksi_page'])->name('admin.transaction');
 

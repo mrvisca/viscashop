@@ -255,7 +255,7 @@
             }
         });
 
-        $("#submitButton").on("click", function(e) {
+        $("#simpan-produk").on("click", function(e) {
             e.preventDefault();
 
             var namaProduk = $(".ini-name").val();
