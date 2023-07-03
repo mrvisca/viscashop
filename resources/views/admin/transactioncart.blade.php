@@ -164,8 +164,8 @@
                         <div class="text-gray-600">8 Items</div>
                     </div> --}}
                 </div>
-                <div class="grid grid-cols-12 gap-5 mt-5 pt-5 border-t border-theme-5">
-                    <a href="javascript:;" data-toggle="modal" data-target="#add-item-modal" class="intro-y block col-span-12 sm:col-span-4 xxl:col-span-3">
+                <div class="grid grid-cols-12 gap-5 mt-5 pt-5 border-t border-theme-5 produk-view">
+                    {{-- <a href="javascript:;" data-toggle="modal" data-target="#add-item-modal" class="intro-y block col-span-12 sm:col-span-4 xxl:col-span-3">
                         <div class="box rounded-md p-3 relative zoom-in">
                             <div class="flex-none pos-image relative block">
                                 <div class="pos-image__preview image-fit">
@@ -244,7 +244,7 @@
                             </div>
                             <div class="block font-medium text-center truncate mt-3">Vanilla Latte</div>
                         </div>
-                    </a>
+                    </a> --}}
                 </div>
             </div>
             <!-- END: Item List -->
@@ -252,13 +252,13 @@
             <div class="col-span-12 lg:col-span-4">
                 <div class="intro-y pr-1">
                     <div class="box p-2">
-                        <div class="pos__tabs nav-tabs justify-center flex"> <a data-toggle="tab" data-target="#ticket" href="javascript:;" class="flex-1 py-2 rounded-md text-center active">Ticket</a> <a data-toggle="tab" data-target="#details" href="javascript:;" class="flex-1 py-2 rounded-md text-center">Details</a> </div>
+                        <div class="pos__tabs nav-tabs justify-center flex"> <a data-toggle="tab" data-target="#ticket" href="javascript:;" class="flex-1 py-2 rounded-md text-center active">Keranjang</a> <a data-toggle="tab" data-target="#details" href="javascript:;" class="flex-1 py-2 rounded-md text-center">Details</a> </div>
                     </div>
                 </div>
                 <div class="tab-content">
                     <div class="tab-content__pane active" id="ticket">
-                        <div class="pos__ticket box p-2 mt-5">
-                            <a href="javascript:;" data-toggle="modal" data-target="#add-item-modal" class="flex items-center p-3 cursor-pointer transition duration-300 ease-in-out bg-white hover:bg-gray-200 rounded-md">
+                        <div class="pos__ticket box p-2 mt-5 item-list">
+                            {{-- <a href="javascript:;" data-toggle="modal" data-target="#add-item-modal" class="flex items-center p-3 cursor-pointer transition duration-300 ease-in-out bg-white hover:bg-gray-200 rounded-md">
                                 <div class="pos__ticket__item-name truncate mr-1">Spaghetti Fettucine Aglio with Beef Bacon</div>
                                 <div class="text-gray-600">x 1</div>
                                 <i data-feather="edit" class="w-4 h-4 text-gray-600 ml-2"></i>
@@ -287,14 +287,7 @@
                                 <div class="text-gray-600">x 1</div>
                                 <i data-feather="edit" class="w-4 h-4 text-gray-600 ml-2"></i>
                                 <div class="ml-auto">$98</div>
-                            </a>
-                        </div>
-                        <div class="box flex p-5 mt-5">
-                            <div class="w-full relative text-gray-700">
-                                <input type="text" class="input input--lg w-full bg-gray-200 pr-10 placeholder-theme-13" placeholder="Use coupon code...">
-                                <i class="w-4 h-4 hidden sm:absolute my-auto inset-y-0 mr-3 right-0" data-feather="search"></i>
-                            </div>
-                            <button class="button text-white bg-theme-1 ml-2">Apply</button>
+                            </a> --}}
                         </div>
                         <div class="box p-5 mt-5">
                             <div class="flex">
@@ -388,8 +381,7 @@
         <div class="modal" id="add-item-modal">
             <div class="modal__content">
                 <div class="flex items-center px-5 py-5 sm:py-3 border-b border-gray-200">
-                    <h2 class="font-medium text-base mr-auto">
-                        Spaghetti Fettucine Aglio with Beef Bacon
+                    <h2 class="font-medium text-base mr-auto" id="item-name">
                     </h2>
                 </div>
                 <div class="p-5 grid grid-cols-12 gap-4 row-gap-3">
@@ -471,13 +463,95 @@
                         '</div>'
                         );
                     }
-
-                    console.log(item[i].id)
                 });
             },
             error: function(xhr, status, error) {
                 // Penanganan kesalahan jika diperlukan
             }
+        });
+
+        // Mendapatkan referensi elemen <select>
+        var view = $(".produk-view");
+
+        // Melakukan permintaan Ajax
+        $.ajax({
+            url: "http://127.0.0.1:8000/api/produk/list",
+            method: "GET",
+            headers: {
+                "Authorization": "Bearer " + token
+            },
+            success: function(response) {
+                // Menghapus semua opsi saat ini dari elemen <select>
+                view.empty();
+
+                // Iterasi melalui data dan membuat opsi baru untuk setiap entri
+                $.each(response, function(index, list) {
+                    for (let p = 0; p < list.length; p++) {
+                        const anchorElement = $('<a href="javascript:;" data-toggle="modal" data-target="#add-item-modal" data-id="' + list[p].id + '" data-name="' + list[p].name + '" class="intro-y block col-span-12 sm:col-span-4 xxl:col-span-3">' +
+                                '<div class="box rounded-md p-3 relative zoom-in">' +
+                                    '<div class="flex-none pos-image relative block">' +
+                                        '<div class="pos-image__preview image-fit">' +
+                                            '<img alt="Midone Tailwind HTML Admin Template" src="{{ asset("dist/images/food-beverage-9.jpg") }}">' +
+                                        '</div>' +
+                                    '</div>' +
+                                    '<div class="block font-medium text-center truncate mt-3">' + list[p].name + '</div>' +
+                                '</div>' +
+                            '</a>'
+                        );
+
+                        // Tambahkan elemen <a> ke dalam view
+                        view.append(anchorElement);
+
+                        // Tambahkan event listener untuk setiap elemen <a>
+                        anchorElement.on('click', function() {
+                            // Dapatkan nama elemen dari atribut data-name pada elemen yang diklik
+                            const itemName = $(this).data('name');
+                            console.log(itemName);
+
+                            // Tampilkan nama elemen di dalam modal
+                            $("#item-name").text(itemName);
+                        });
+                    }
+                });
+            },
+            error: function(xhr, status, error) {
+                // Penanganan kesalahan jika diperlukan
+            }
+        });
+
+        // Event listener untuk menyembunyikan modal saat ditutup
+        $('#add-item-modal').on('hidden.bs.modal', function() {
+        // Bersihkan konten modal ketika ditutup
+        $('#item-name').text('');
+        });
+
+        // Event listener untuk menghandle submit pada modal
+        $('#add-item-modal form').on('submit', function(e) {
+            e.preventDefault();
+
+            // Dapatkan nilai input pada form
+            const itemName = $('#add-item-modal input[name="item-name"]').val();
+            const itemQuantity = $('#add-item-modal input[name="item-quantity"]').val();
+            const itemPrice = $('#add-item-modal input[name="item-price"]').val();
+
+            // Buat elemen baru untuk ditambahkan
+            const newItemElement = $('<a href="javascript:;" data-toggle="modal" data-target="#add-item-modal" class="flex items-center p-3 cursor-pointer transition duration-300 ease-in-out bg-white hover:bg-gray-200 rounded-md">' +
+                                        '<div class="pos__ticket__item-name truncate mr-1">' + itemName + '</div>' +
+                                        '<div class="text-gray-600">x ' + itemQuantity + '</div>' +
+                                        '<i data-feather="edit" class="w-4 h-4 text-gray-600 ml-2"></i>' +
+                                        '<div class="ml-auto">$' + itemPrice + '</div>' +
+                                    '</a>');
+
+            // Tambahkan elemen baru ke dalam list
+            $('.item-list').append(newItemElement);
+
+            // Reset nilai input pada form
+            $('#add-item-modal input[name="item-name"]').val('');
+            $('#add-item-modal input[name="item-quantity"]').val('');
+            $('#add-item-modal input[name="item-price"]').val('');
+
+            // Tutup modal
+            $('#add-item-modal').modal('hide');
         });
     });
 </script>
